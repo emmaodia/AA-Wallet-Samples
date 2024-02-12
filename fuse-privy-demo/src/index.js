@@ -4,28 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { PrivyProvider } from "@privy-io/react-auth";
-// import { fuse, polygon } from "viem/chains";
-import { defineChain } from 'viem'
-
-const fuse = defineChain({
-  id: 122, // Replace this with your chain's ID
-  name: 'Fuse Network',
-  network: 'Fuse',
-  nativeCurrency: {
-    decimals: 18, // Replace this with the number of decimals for your chain's native token
-    name: 'Fuse Token',
-    symbol: 'FUSE',
-  },
-  rpcUrls: {
-    default: {
-      http: ['https://rpc.fuse.io'],
-      webSocket: ['wss://explorer-node.fuse.io/ws'],
-    },
-  },
-  blockExplorers: {
-    default: { name: 'Fuse Explorer', url: 'https://explorer.fuse.io/' },
-  },
-})
+import { fuse } from "viem/chains";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -34,7 +13,7 @@ root.render(
       appId={process.env.REACT_APP_PRIVY_APP_ID}
       onSuccess={(user) => console.log(`User ${user.id} logged in!`)}
       config={{
-        // defaultChain: fuse,
+        defaultChain: fuse,
         supportedChains: [fuse],
         loginMethods: ["email", "wallet"],
         embeddedWallets: {
